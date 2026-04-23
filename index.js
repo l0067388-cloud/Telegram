@@ -12,8 +12,8 @@ app.use(express.json());
 
 // 🔥 TUS DATOS
 const apiId = 34958364;
-const apiHash = "TU_API_HASH"; // 🔴 cambia si ya lo regeneraste
-const stringSession = new StringSession("TU_SESSION_AQUI"); // 🔴 pega tu session
+const apiHash = "95ce2eb29459e2628874d2cb83f6c09b"; // 🔴 cambia si ya lo regeneraste
+const stringSession = new StringSession("1AQAOMTQ5LjE1NC4xNzUuNTgBuw8q1TvqjiUDyW8VeVFEa36Sg8gajmzjRvniN0PIhauPnzOwYaQ6gfIwmHZnvEphwZ38NFuxC6eXfzMYJjhyzll6oRIF+YpMvTXC+IkYMNcimM15eg2T4MMO1bNDeAzr7E2YQJaASlQfUqNu3+5Ae06omxKoEDIN3bFQgpt+G5hLRiW+TgwUCuJrjriAf2Tk5tSPCaAKzx2Cn6AD5sBRUjt23e7tSJCvh0Cr0FfKeD+P4u9ww0lKhaq2CNGJxgxdkycp0BIMpz8p1qedhJCEHMgFuj4kjY294OSu+5KUZyiUXJ2PYV7Em4SeCBKJXkjRAUiFHMsZ8aHk0sdmFKmA48M="); // 🔴 pega tu session
 
 let client;
 
