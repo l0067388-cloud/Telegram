@@ -31,7 +31,7 @@ app.post("/send", async (req, res) => {
   const { accountId } = req.body;
 
   try {
-    await client.sendMessage("NOMBRE_DEL_BOT", {
+    await client.sendMessage("@Raika_CheckBot", {
       message: accountId,
     });
 
