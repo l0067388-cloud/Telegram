@@ -8,7 +8,7 @@ app.use(express.json());
 // 🔥 TUS DATOS
 const apiId = 34958364; // <-- TU API ID
 const apiHash = "95ce2eb29459e2628874d2cb83f6c09b";
-const stringSession = new StringSession("PEGA_AQUI_TU_SESSION"); // 🔥 IMPORTANTE
+const stringSession = new StringSession("1AQAOMTQ5LjE1NC4xNzUuNTgBu21lZS+czTxdJS2svtwDXgCuxXuq8J0pn6vpdfoVv7vU5pymeR4WeUuYdkkOoPOZnWVgcxZBHnRDpL8BewxRnuGe9cSNh6c/1+QPI8fCtLtGzUuZINcmogPSXfimqTFeBObrkQvKnSWqqxVF+nb62IlfoDxvUP+ObgvD8E7dPX/sE632gNwu9ncVysc46ae989aLY/jGvydIJ290PlEMd6xSxZWY3g609mdbR2Fz+RBFirLy7YLHTgwmTUhPhdQcgzbPpoQK1LMHFV71lMQPVna1SOzm+DadGrfi5XDz8QXQWgDtX9t4Un5OFXyRhYC8isTeqWkBE45T8rD+F+fpdNc="); // 🔥 IMPORTANTE
 
 // 🔥 CLIENTE TELEGRAM
 const client = new TelegramClient(stringSession, apiId, apiHash, {
