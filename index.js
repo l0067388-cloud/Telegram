@@ -8,7 +8,7 @@ app.get("/", (req, res) => {
 });
 
 app.post("/send", (req, res) => {
-  console.log("Recibido:", req.body.accountId);
+  console.log("Recibido:", req.body);
   res.send("ok");
 });
 
