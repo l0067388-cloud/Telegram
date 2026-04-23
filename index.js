@@ -1,51 +1,69 @@
 const express = require("express");
+const cors = require("cors");
+
 const { TelegramClient } = require("telegram");
 const { StringSession } = require("telegram/sessions");
 
 const app = express();
+
+// 🔥 CORS (IMPORTANTE PARA BASE44)
+app.use(cors());
 app.use(express.json());
 
 // 🔥 TUS DATOS
-const apiId = 34958364; // <-- TU API ID
-const apiHash = "95ce2eb29459e2628874d2cb83f6c09b";
-const stringSession = new StringSession("1AQAOMTQ5LjE1NC4xNzUuNTgBu21lZS+czTxdJS2svtwDXgCuxXuq8J0pn6vpdfoVv7vU5pymeR4WeUuYdkkOoPOZnWVgcxZBHnRDpL8BewxRnuGe9cSNh6c/1+QPI8fCtLtGzUuZINcmogPSXfimqTFeBObrkQvKnSWqqxVF+nb62IlfoDxvUP+ObgvD8E7dPX/sE632gNwu9ncVysc46ae989aLY/jGvydIJ290PlEMd6xSxZWY3g609mdbR2Fz+RBFirLy7YLHTgwmTUhPhdQcgzbPpoQK1LMHFV71lMQPVna1SOzm+DadGrfi5XDz8QXQWgDtX9t4Un5OFXyRhYC8isTeqWkBE45T8rD+F+fpdNc="); // 🔥 IMPORTANTE
+const apiId = 34958364;
+const apiHash = "TU_API_HASH"; // 🔴 cambia si ya lo regeneraste
+const stringSession = new StringSession("TU_SESSION_AQUI"); // 🔴 pega tu session
 
-// 🔥 CLIENTE TELEGRAM
-const client = new TelegramClient(stringSession, apiId, apiHash, {
-  connectionRetries: 5,
-});
+let client;
 
-// 🔥 CONECTAR UNA SOLA VEZ
-(async () => {
-  await client.connect();
-  console.log("Telegram conectado");
-})();
+// 🔥 INICIAR TELEGRAM
+async function iniciarTelegram() {
+  try {
+    client = new TelegramClient(stringSession, apiId, apiHash, {
+      connectionRetries: 5,
+    });
+
+    await client.connect();
+    console.log("✅ Telegram conectado");
+  } catch (err) {
+    console.log("❌ Error Telegram:", err.message);
+  }
+}
+
+iniciarTelegram();
 
 // 🔹 TEST
 app.get("/", (req, res) => {
   res.send("Servidor activo 🚀");
 });
 
-// 🔹 ENDPOINT
+// 🔹 ENDPOINT QUE USA BASE44
 app.post("/send", async (req, res) => {
+  console.log("BODY COMPLETO:", req.body);
+
   const { accountId } = req.body;
 
+  if (!client) {
+    return res.status(500).send("Telegram no conectado");
+  }
+
   try {
-    await client.sendMessage("@Raika_CheckBot", {
+    await client.sendMessage("NOMBRE_DEL_BOT", {
       message: accountId,
     });
 
-    console.log("Enviado:", accountId);
+    console.log("📨 Enviado:", accountId);
     res.send("ok");
   } catch (err) {
-    console.log("Error:", err);
+    console.log("❌ Error enviando:", err.message);
     res.status(500).send("error");
   }
 });
 
-// 🔥 PUERTO
+// 🔥 PUERTO (RENDER)
 const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, () => {
-  console.log("Servidor corriendo en puerto", PORT);
+  console.log("🚀 Servidor corriendo en puerto", PORT);
 });
