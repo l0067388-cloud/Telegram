@@ -1,13 +1,14 @@
 const express = require("express");
-
 const app = express();
+
 app.use(express.json());
 
-app.post("/send", async (req, res) => {
-  const { accountId } = req.body;
+app.get("/", (req, res) => {
+  res.send("Servidor activo 🚀");
+});
 
-  console.log("Recibido:", accountId);
-
+app.post("/send", (req, res) => {
+  console.log("Recibido:", req.body.accountId);
   res.send("ok");
 });
 
